@@ -1,1 +1,1 @@
-{"mapName":"mini_open","playerPaths":["Bots/JavaAI/PlayerAI.java","Bots/JavaAI/PlayerAI.java"],"maxResponseTime":400,"turnLimit":100,"portNumber":4461,"serverTimeout":86400000,"playerLaunchTypes":["AI","AI"]}
+{"mapName":"mainframe_vs_control_simple","playerPaths":["",""],"maxResponseTime":762,"turnLimit":100,"portNumber":4461,"serverTimeout":86400000,"playerLaunchTypes":["IDE","IDE"]}
