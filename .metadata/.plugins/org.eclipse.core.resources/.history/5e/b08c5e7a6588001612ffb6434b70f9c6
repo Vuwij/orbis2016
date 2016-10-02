@@ -1,0 +1,11 @@
+package game;
+
+import com.orbischallenge.ctz.objects.World;
+
+public class CustomWorld {
+	public static World world;
+	
+	public static void setWorld(World world_) {
+		world = world_;
+	}
+}

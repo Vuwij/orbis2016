@@ -1,0 +1,22 @@
+package utils;
+
+import java.util.HashMap;
+
+import com.orbischallenge.ctz.objects.enums.Direction;
+
+public class DirectionList extends HashMap<String, Direction> {
+	private static final long serialVersionUID = 5602530079261492340L;
+	public static DirectionList all;
+	
+	public DirectionList() {
+		this.put("East", Direction.EAST);
+		this.put("North", Direction.NORTH);
+		this.put("South", Direction.SOUTH);
+		this.add(Direction.WEST);
+		this.add(Direction.NORTH_WEST);
+		this.add(Direction.NORTH_WEST);
+		this.add(Direction.SOUTH_EAST);
+		this.add(Direction.SOUTH_WEST);	
+	}
+	
+}

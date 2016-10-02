@@ -1,0 +1,101 @@
+package game;
+
+import java.util.Map;
+
+import com.orbischallenge.ctz.Constants;
+import com.orbischallenge.ctz.objects.EnemyUnit;
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.objects.UnitClient;
+import com.orbischallenge.ctz.objects.World;
+import com.orbischallenge.ctz.objects.enums.Direction;
+import com.orbischallenge.ctz.objects.enums.Team;
+import com.orbischallenge.ctz.utils.PointUtils;
+import com.orbischallenge.game.engine.Point;
+
+import action.*;
+
+@SuppressWarnings("unused")
+public abstract class AnyUnit {
+	public ActionList actions = new ActionList();
+	
+	public UnitClient unit;
+	
+	protected void setActionForDirections(ActionList actions, Direction direction) {
+		if(direction == Direction.NORTH) actions.get("ShootNorth").isValid = true;
+		if(direction == Direction.SOUTH) actions.get("ShootSouth").isValid = true;
+		if(direction == Direction.EAST) actions.get("ShootEast").isValid = true;
+		if(direction == Direction.WEST) actions.get("ShootWest").isValid = true;
+		if(direction == Direction.NORTH_EAST) actions.get("ShootNorthEast").isValid = true;
+		if(direction == Direction.SOUTH_EAST) actions.get("ShootSouthEast").isValid = true;
+		if(direction == Direction.NORTH_WEST) actions.get("ShootNorthWest").isValid = true;
+		if(direction == Direction.SOUTH_WEST) actions.get("ShootSouthWest").isValid = true;
+	}
+	
+	public abstract void CheckAllActions();
+	
+	// Goes through the action loop and checks the points for each action
+	public void EvaluateAllActions() {
+		System.out.println("Evaluating Score for [" + unit.getTeam().name() + " " + unit.getCallSign().name() + "]");
+		
+		for(Map.Entry<String, Action> action : actions.entrySet()) {
+			if(action.getValue().isValid)
+				action.getValue().EvaluateScore();
+		}
+	}
+	
+	// Setups all the actions with the required information
+	public void SetupActionInformation(AnyUnit currentUnit, AnyUnit[] enemyUnits, AnyUnit[] friendlyUnits) {
+		for(Map.Entry<String, Action> action : actions.entrySet()) {
+			action.getValue().currentUnit = currentUnit;
+			action.getValue().enemyUnits = enemyUnits;
+			action.getValue().friendlyUnits = friendlyUnits;
+		}
+	}
+	
+	// Gets the best action
+	public Action GetBestAction() {
+		return actions.getBestAction();
+	}
+	
+	public boolean IsDead() {
+		return (unit.getHealth() == 0);
+	}
+	
+	public AnyUnit[] getEnemies() { try {
+		if(this instanceof Enemy) {
+			return Friendly.friendlyUnits;
+		}
+		if(this instanceof Friendly) {
+			return Enemy.enemyUnits;
+		}
+		throw new Exception("Enemy Invalid");
+	} catch (Exception ex) {
+		ex.printStackTrace();
+		return null;
+	} } 
+	
+	public AnyUnit getClosestEnemyInRange() {
+		AnyUnit closestEnemy = null;
+		int closestDistance = 0;
+		
+		for(int i = 0; i < 4; i++) {
+			if(getEnemies()[i].IsDead()) continue;
+			if(closestEnemy == null) {
+				closestEnemy = getEnemies()[i];
+				PointUtils.chebyshevDistance(getEnemies()[i].unit.getPosition(), this.unit.getPosition());
+			}
+			
+			Point position = getEnemies()[i].unit.getPosition();
+			int newDistance = PointUtils.chebyshevDistance(position, this.unit.getPosition();
+			if() < closestDistance) {
+				closestEnemy = getEnemies()[i];
+				
+			}
+		}
+		return null;
+	}
+	
+	public AnyUnit getClosestEnemyInShootingRange() {
+		return null;
+	}
+}

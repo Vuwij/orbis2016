@@ -1,0 +1,8 @@
+package unit;
+
+import java.util.List;
+
+public class FriendlyUnit extends AnuUnit {
+	public static List<EnemyUnit> enemyUnits;
+	
+}

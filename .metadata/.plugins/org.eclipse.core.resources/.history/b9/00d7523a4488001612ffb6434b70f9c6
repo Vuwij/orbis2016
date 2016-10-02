@@ -1,0 +1,31 @@
+package game;
+
+import com.orbischallenge.ctz.Constants;
+import com.orbischallenge.ctz.objects.EnemyUnit;
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.objects.World;
+
+
+@SuppressWarnings("unused")
+public class Enemy extends AnyUnit {
+	public static Enemy[] enemyUnits = {
+		new Enemy(),
+		new Enemy(),
+		new Enemy(),
+		new Enemy()
+	};
+
+	public static void setEnemyUnits(EnemyUnit[] units) {
+		for(int i = 0; i < 4; i++)
+			enemyUnits[i].enemyUnit = units[i];
+	}
+	
+	private EnemyUnit enemyUnit;
+	public void setEnemyUnit(EnemyUnit enemyUnit) {
+		this.enemyUnit = enemyUnit;
+	}
+	
+	@Override
+	public void CheckAllActions() {
+	}
+}

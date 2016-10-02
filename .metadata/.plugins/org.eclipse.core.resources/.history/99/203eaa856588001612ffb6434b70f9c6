@@ -1,0 +1,20 @@
+package game;
+
+import com.orbischallenge.ctz.objects.World;
+
+public class CustomWorld {
+	public static World world;
+	
+	public static boolean map[][];
+	public static int height;
+	public static int width;
+	
+	public static void setWorld(World world_) {
+		world = world_;
+		height = world.getHeight();
+		width = world.getWidth();
+		map = new boolean[height][width];
+		
+		
+	}
+}

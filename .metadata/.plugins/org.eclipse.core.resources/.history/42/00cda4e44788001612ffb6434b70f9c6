@@ -1,0 +1,22 @@
+package utils;
+
+import java.util.ArrayList;
+
+import com.orbischallenge.ctz.objects.enums.Direction;
+
+public class DirectionList extends ArrayList<Direction> {
+	private static final long serialVersionUID = 5602530079261492340L;
+	public static DirectionList all;
+	
+	public DirectionList() {
+		this.add(Direction.EAST);
+		this.add(Direction.NORTH);
+		this.add(Direction.SOUTH);
+		this.add(Direction.WEST);
+		this.add(Direction.NORTH_WEST);
+		this.add(Direction.NORTH_WEST);
+		this.add(Direction.SOUTH_EAST);
+		this.add(Direction.SOUTH_WEST);	
+	}
+	
+}

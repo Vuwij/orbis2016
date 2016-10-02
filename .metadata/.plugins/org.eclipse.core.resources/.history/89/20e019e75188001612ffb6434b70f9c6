@@ -1,0 +1,15 @@
+package action;
+
+public class ShootingAction extends Action {
+
+	public ShootingAction(String name) {
+		super(name);
+	}
+
+	@Override
+	public void EvaluateScore() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

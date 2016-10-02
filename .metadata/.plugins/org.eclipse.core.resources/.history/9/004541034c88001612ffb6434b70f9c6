@@ -1,0 +1,8 @@
+package action;
+
+public class ShootingActionPoints {
+	public static int KillsLastEnemy = 1000000;
+	public static int KillsEnemy = 20000;
+	public static int DoubleDamage = 2000;
+	public static int NormalDamage = 1000;
+}

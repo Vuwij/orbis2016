@@ -1,0 +1,12 @@
+package utils;
+
+import java.util.ArrayList;
+
+import com.orbischallenge.ctz.objects.enums.Direction;
+
+public class DirectionList extends ArrayList<Direction> {
+	private static final long serialVersionUID = 5602530079261492340L;
+	
+	public DirectionList
+	
+}

@@ -1,0 +1,11 @@
+package unit;
+
+public class EnemyUnit extends AnyUnit {
+	public static EnemyUnit[] enemyUnits = {
+		new EnemyUnit(),
+		new EnemyUnit(),
+		new EnemyUnit(),
+		new EnemyUnit(),
+	};
+	
+}

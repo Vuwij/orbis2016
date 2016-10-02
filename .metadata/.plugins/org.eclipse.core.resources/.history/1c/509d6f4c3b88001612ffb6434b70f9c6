@@ -1,0 +1,20 @@
+package game;
+
+import com.orbischallenge.ctz.Constants;
+import com.orbischallenge.ctz.objects.EnemyUnit;
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.objects.World;
+
+import action.*;
+
+@SuppressWarnings("unused")
+public class AnyUnit {
+	public ActionList actions = new ActionList();
+	
+	public void CheckIfMovementIsValid() {
+		for(Action action : actions) {
+			
+		}
+	}
+	
+}

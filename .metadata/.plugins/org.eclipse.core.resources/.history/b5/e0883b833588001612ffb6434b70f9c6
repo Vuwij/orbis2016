@@ -1,0 +1,15 @@
+package unit;
+
+import com.orbischallenge.ctz.Constants;
+import com.orbischallenge.ctz.objects.EnemyUnit;
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.objects.World;
+
+
+public class Friendly extends AnyUnit {
+	public static FriendlyUnit[] friendlyUnits;
+	
+	public FriendlyUnit friendlyUnit;
+	
+	
+}

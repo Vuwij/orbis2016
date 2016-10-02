@@ -1,0 +1,20 @@
+package action;
+
+import java.util.*;
+import com.orbischallenge.game.engine.Point;
+
+public abstract class Action {
+	public String name;
+	public float score = 0.0f;
+	public boolean isValid = false;
+	
+	public 
+	
+	public Action(String name_) {
+		name = name_;
+	}
+	
+	public abstract void EvaluateScore();
+}
+
+

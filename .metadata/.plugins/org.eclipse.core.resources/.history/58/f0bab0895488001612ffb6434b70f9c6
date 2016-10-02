@@ -1,0 +1,49 @@
+package action;
+
+import game.*;
+
+public class ShootingAction extends Action {
+
+	public ShootingAction(String name) {
+		super(name);
+	}
+
+	@Override
+	public void EvaluateScore() {
+		score = 0;
+		score += EvaluateKillsLastEnemy();
+		score += EvaluateKillsEnemy();
+		score += EvaluateDoubleDamage();
+		score += EvaluateNormalDamage();
+	}
+	
+	private float EvaluateKillsLastEnemy() {
+		for(AnyUnit enemy : enemyUnits) {
+			if(enemy.unit.getHealth() == 0) {
+				
+			}
+		}
+		
+		return 0.0f;
+	}
+	
+	private float EvaluateKillsEnemy() {
+		return 0.0f;
+	}
+	
+	private float EvaluateDoubleDamage() {
+		return 0.0f;
+	}
+	
+	private float EvaluateNormalDamage() {
+		return 0.0f;
+	}
+
+}
+
+//public class ShootingActionPoints {
+//	public static int KillsLastEnemy = 1000000;
+//	public static int KillsEnemy = 10000;
+//	public static int DoubleDamage = 2000;
+//	public static int NormalDamage = 1000;
+//}

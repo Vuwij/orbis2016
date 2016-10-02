@@ -1,0 +1,33 @@
+package game;
+
+import com.orbischallenge.ctz.objects.World;
+import com.orbischallenge.game.engine.Point;
+import com.orbischallenge.ctz.objects.enums.Direction;
+
+
+public class CustomWorld {
+	public static World world;
+	
+	public static boolean map[][];
+	public static int height;
+	public static int width;
+	
+	public static void setWorld(World world_) {
+		world = world_;
+		height = world.getHeight();
+		width = world.getWidth();
+		map = new boolean[width][height];
+		
+		// Gets the board drawn
+		for(int i = 0; i < width; i++) {
+			for(int j = 0; j < height; j++) {
+				map[i][j] = world.getTile(new Point(i, j)).doesBlockMovement();
+			}
+		}
+	}
+	
+	public static void evaluateRange(Direction direction, Point from) {
+		
+	}
+	
+}

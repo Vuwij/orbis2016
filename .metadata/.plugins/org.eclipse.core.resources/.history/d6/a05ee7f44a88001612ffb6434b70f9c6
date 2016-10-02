@@ -1,0 +1,14 @@
+package action;
+
+public class MovementAction extends Action{
+
+	public MovementAction(String name) {
+		super(name);
+	}
+	
+}
+
+public enum MovementActionPoints {
+	CloserToEnemy = 5
+	
+}

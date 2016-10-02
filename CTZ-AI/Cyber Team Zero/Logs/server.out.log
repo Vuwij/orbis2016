@@ -1,0 +1,689 @@
+[67531540] Using port 4461
+Server waiting for client
+Connected player with UUID Blue
+Assigned index 1 (Blue)
+Server waiting for client
+Connected player with UUID Blue
+Assigned index 1 (Blue)
+Amber gained 200 points for capturing a control point
+Blue gained 200 points for capturing a control point
+[1] Blue (Comm open) - sending GET_READY...
+[1] Blue (Comm open) - Ready!
+[67541509] Asking 0 for move
+[67541509] Asking 1 for move
+Exception in thread "Thread-1" java.lang.NullPointerException
+	at com.orbischallenge.communication.server.CommunicationServer.requestMove(CommunicationServer.java:109)
+	at com.orbischallenge.move.NetworkMoveProvider.getNextMove(NetworkMoveProvider.java:42)
+	at com.orbischallenge.game.engine.MoveProvider.run(MoveProvider.java:78)
+	at java.lang.Thread.run(Thread.java:745)
+[67541632] Got 1's move
+[67542376] 0 is not ready
+[67542376] ===== Move Frame 0 ===========
+[67542377] No move from player 0
+[67542377] ==============================
+XXXXXXXXXXXXXXX
+X NX NXNXN XN X
+X+ +   +   + +X
+XXX XXgXfXX XXX
+X   h       e X
+X XXX XXX XXX+X
+X +         B X
+XX XXX+X+XXX XX
+X A         + X
+X+XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67542896] Asking 1 for move
+[67542955] Got 1's move
+[67543760] 0 is not ready
+[67543760] ===== Move Frame 1 ===========
+[67543761] No move from player 0
+[67543761] ==============================
+Blue gained 200 points for capturing a control point
+[67543762] Control Point Felix captured by BLUE
+XXXXXXXXXXXXXXX
+X NX NXBXN XN X
+X+ +   f   + +X
+XXX XXgX XX XXX
+X    h        X
+X XXX XXX XXXeX
+X +         B X
+XX XXX+X+XXX XX
+X A         + X
+X+XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67544268] Asking 1 for move
+[67544294] Got 1's move
+[67545133] 0 is not ready
+[67545133] ===== Move Frame 2 ===========
+[67545133] No move from player 0
+[67545133] ==============================
+Blue gained 50 points for obtaining a pick up
+Blue gained 50 points for obtaining a pick up
+XXXXXXXXXXXXXXX
+X NX NXBXN XN X
+X+ +   f   + +X
+XXX XXgX XX XXX
+X   h         X
+X XXX XXX XXXeX
+X +         B X
+XX XXX+X+XXX XX
+X A         + X
+X+XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67545642] Asking 1 for move
+[67545671] Got 1's move
+[67546509] 0 is not ready
+[67546510] ===== Move Frame 3 ===========
+[67546510] No move from player 0
+[67546510] ==============================
+Blue gained 200 points for capturing a control point
+[67546510] Control Point Hannah captured by BLUE
+XXXXXXXXXXXXXXX
+X NX NXBXB XN X
+X+ +    f  + +X
+XXX XX X XX XXX
+X  h g        X
+X XXX XXX XXX X
+X +         e X
+XX XXX+X+XXX XX
+X A         + X
+X+XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67547017] Asking 1 for move
+[67547059] Got 1's move
+[67547884] 0 is not ready
+[67547884] ===== Move Frame 4 ===========
+[67547884] No move from player 0
+[67547884] ==============================
+XXXXXXXXXXXXXXX
+X NX NXBXB XN X
+X+ +       + +X
+XXXhXX XfXX XXX
+X   g         X
+X XXX XXX XXX X
+X +        eB X
+XX XXX+X+XXX XX
+X A         + X
+X+XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67548387] Asking 1 for move
+[67548411] Got 1's move
+[67549252] 0 is not ready
+[67549252] ===== Move Frame 5 ===========
+[67549252] No move from player 0
+[67549253] ==============================
+Blue gained 200 points for capturing a control point
+[67549253] Control Point Andrew captured by BLUE
+XXXXXXXXXXXXXXX
+X BX NXBXB XN X
+X+ h       + +X
+XXX XX X XX XXX
+X  g     f    X
+X XXX XXX XXX X
+X +         e X
+XX XXX+X+XXX XX
+X A         + X
+X+XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67549757] Asking 1 for move
+[67549778] Got 1's move
+[67550623] 0 is not ready
+[67550623] ===== Move Frame 6 ===========
+[67550623] No move from player 0
+[67550623] ==============================
+Blue gained 50 points for obtaining a pick up
+XXXXXXXXXXXXXXX
+X BX NXBXB XN X
+X+ h       + +X
+XXX XX X XX XXX
+X g       f   X
+X XXX XXX XXX X
+X +        eB X
+XX XXX+X+XXX XX
+X A         + X
+X+XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67551126] Asking 1 for move
+[67551142] Got 1's move
+[67551991] 0 is not ready
+[67551992] ===== Move Frame 7 ===========
+[67551992] No move from player 0
+[67551992] ==============================
+XXXXXXXXXXXXXXX
+X BX NXBXB XN X
+X+h        + +X
+XXX XX X XX XXX
+X          f  X
+XgXXX XXX XXX X
+X +         e X
+XX XXX+X+XXX XX
+X A         + X
+X+XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67552496] Asking 1 for move
+[67552515] Got 1's move
+[67553359] 0 is not ready
+[67553359] ===== Move Frame 8 ===========
+[67553360] No move from player 0
+[67553360] ==============================
+XXXXXXXXXXXXXXX
+X BX NXBXB XN X
+Xh         + +X
+XXX XX X XX XXX
+X         f   X
+X XXX XXX XXX X
+X g        eB X
+XX XXX+X+XXX XX
+X A         + X
+X+XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67553866] Asking 1 for move
+[67553883] Got 1's move
+[67554733] 0 is not ready
+[67554733] ===== Move Frame 9 ===========
+[67554734] No move from player 0
+[67554734] ==============================
+Blue gained 50 points for obtaining a pick up
+Blue gained 50 points for obtaining a pick up
+XXXXXXXXXXXXXXX
+X BX NXBXB XN X
+Xh         + +X
+XXX XX X XX XXX
+X          f  X
+X XXX XXX XXX X
+X g         e X
+XX XXX+X+XXX XX
+X A         + X
+X+XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67555240] Asking 1 for move
+[67555256] Got 1's move
+[67556106] 0 is not ready
+[67556106] ===== Move Frame 10 ===========
+[67556107] No move from player 0
+[67556107] ==============================
+Blue gained 50 points for neutralizing a control point
+Amber lost -725 points for losing a control point
+[67556107] Mainframe Barbara neutralized by BLUE
+XXXXXXXXXXXXXXX
+X BX NXBXB XN X
+X h        + +X
+XXX XX X XX XXX
+X         f   X
+X XXX XXX XXX X
+X          eB X
+XXgXXX+X+XXX XX
+X N         + X
+X+XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67556613] Asking 1 for move
+[67556627] Got 1's move
+[67557480] 0 is not ready
+[67557480] ===== Move Frame 11 ===========
+[67557481] No move from player 0
+[67557481] ==============================
+Blue gained 200 points for capturing a control point
+[67557482] Mainframe Barbara captured by BLUE
+XXXXXXXXXXXXXXX
+X BX NXBXB XN X
+X          + +X
+XXXhXX X XX XXX
+X          f  X
+X XXX XXX XXX X
+X           e X
+XX XXX+X+XXX XX
+X g         + X
+X+XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67557988] Asking 1 for move
+[67557996] Got 1's move
+[67558852] 0 is not ready
+[67558852] ===== Move Frame 12 ===========
+[67558852] No move from player 0
+[67558852] ==============================
+Blue gained 200 points for capturing a control point
+[67558853] Control Point Donna captured by BLUE
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X   h      + +X
+XXX XX X XX XXX
+X           f X
+X XXX XXX XXX X
+X          eB X
+XX XXX+X+XXX XX
+XgB         + X
+X+XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67559359] Asking 1 for move
+[67559373] Got 1's move
+[67560226] 0 is not ready
+[67560226] ===== Move Frame 13 ===========
+[67560226] No move from player 0
+[67560226] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X    h     + +X
+XXX XX X XX XXX
+X             X
+X XXX XXX XXXfX
+X           e X
+XX XXX+X+XXX XX
+X B         + X
+XgXXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67560733] Asking 1 for move
+[67560744] Got 1's move
+[67561596] 0 is not ready
+[67561596] ===== Move Frame 14 ===========
+[67561597] No move from player 0
+[67561597] ==============================
+Blue gained 50 points for obtaining a pick up
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XXhX XX XXX
+X             X
+X XXX XXX XXX X
+X          ef X
+XX XXX+X+XXX XX
+X B         + X
+XgXXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67562100] Asking 1 for move
+[67562112] Got 1's move
+[67562966] 0 is not ready
+[67562966] ===== Move Frame 15 ===========
+[67562966] No move from player 0
+[67562967] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XX X XX XXX
+X      h      X
+X XXX XXX XXX X
+X          fe X
+XX XXX+X+XXX XX
+X g         + X
+X XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67563473] Asking 1 for move
+[67563481] Got 1's move
+[67564340] 0 is not ready
+[67564340] ===== Move Frame 16 ===========
+[67564341] No move from player 0
+[67564341] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XX X XX XXX
+X       h     X
+X XXX XXX XXX X
+X          ef X
+XX XXX+X+XXX XX
+XgB         + X
+X XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67564849] Asking 1 for move
+[67564863] Got 1's move
+[67565711] 0 is not ready
+[67565711] ===== Move Frame 17 ===========
+[67565711] No move from player 0
+[67565711] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XX X XX XXX
+X             X
+X XXX XXXhXXX X
+X          fe X
+XX XXX+X+XXX XX
+X g         + X
+X XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67566217] Asking 1 for move
+[67566238] Got 1's move
+[67567079] 0 is not ready
+[67567080] ===== Move Frame 18 ===========
+[67567080] No move from player 0
+[67567080] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XX X XX XXX
+X             X
+X XXX XXX XXX X
+X         hef X
+XX XXX+X+XXX XX
+XgB         + X
+X XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67567587] Asking 1 for move
+[67567600] Got 1's move
+[67568451] 0 is not ready
+[67568451] ===== Move Frame 19 ===========
+[67568451] No move from player 0
+[67568452] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XX X XX XXX
+X             X
+X XXX XXX XXX X
+X         hfe X
+XX XXX+X+XXX XX
+X g         + X
+X XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67568956] Asking 1 for move
+[67568965] Got 1's move
+[67569818] 0 is not ready
+[67569818] ===== Move Frame 20 ===========
+[67569819] No move from player 0
+[67569819] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XX X XX XXX
+X             X
+X XXX XXX XXX X
+X         hef X
+XX XXX+X+XXX XX
+XgB         + X
+X XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67570326] Asking 1 for move
+[67570339] Got 1's move
+[67571193] 0 is not ready
+[67571193] ===== Move Frame 21 ===========
+[67571193] No move from player 0
+[67571193] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XX X XX XXX
+X             X
+X XXX XXX XXX X
+X         hfe X
+XX XXX+X+XXX XX
+X g         + X
+X XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67571702] Asking 1 for move
+[67571711] Got 1's move
+[67572564] 0 is not ready
+[67572564] ===== Move Frame 22 ===========
+[67572564] No move from player 0
+[67572565] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XX X XX XXX
+X             X
+X XXX XXX XXX X
+X         hef X
+XX XXX+X+XXX XX
+XgB         + X
+X XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67573070] Asking 1 for move
+[67573089] Got 1's move
+[67573935] 0 is not ready
+[67573935] ===== Move Frame 23 ===========
+[67573935] No move from player 0
+[67573936] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XX X XX XXX
+X             X
+X XXX XXX XXX X
+X         hfe X
+XX XXX+X+XXX XX
+X g         + X
+X XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67574438] Asking 1 for move
+[67574450] Got 1's move
+[67575301] 0 is not ready
+[67575301] ===== Move Frame 24 ===========
+[67575301] No move from player 0
+[67575302] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XX X XX XXX
+X             X
+X XXX XXX XXX X
+X         hef X
+XX XXX+X+XXX XX
+XgB         + X
+X XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67575806] Asking 1 for move
+[67575818] Got 1's move
+[67576671] 0 is not ready
+[67576672] ===== Move Frame 25 ===========
+[67576672] No move from player 0
+[67576672] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XX X XX XXX
+X             X
+X XXX XXX XXX X
+X         hfe X
+XX XXX+X+XXX XX
+X g         + X
+X XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67577179] Asking 1 for move
+[67577192] Got 1's move
+[67578041] 0 is not ready
+[67578041] ===== Move Frame 26 ===========
+[67578041] No move from player 0
+[67578041] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XX X XX XXX
+X             X
+X XXX XXX XXX X
+X         hef X
+XX XXX+X+XXX XX
+XgB         + X
+X XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67578546] Asking 1 for move
+[67578559] Got 1's move
+[67579414] 0 is not ready
+[67579414] ===== Move Frame 27 ===========
+[67579414] No move from player 0
+[67579414] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XX X XX XXX
+X             X
+X XXX XXX XXX X
+X         hfe X
+XX XXX+X+XXX XX
+X g         + X
+X XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67579918] Asking 1 for move
+[67579926] Got 1's move
+[67580784] 0 is not ready
+[67580785] ===== Move Frame 28 ===========
+[67580785] No move from player 0
+[67580785] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XX X XX XXX
+X             X
+X XXX XXX XXX X
+X         hef X
+XX XXX+X+XXX XX
+XgB         + X
+X XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67581291] Asking 1 for move
+[67581300] Got 1's move
+[67582153] 0 is not ready
+[67582153] ===== Move Frame 29 ===========
+[67582153] No move from player 0
+[67582154] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XX X XX XXX
+X             X
+X XXX XXX XXX X
+X         hfe X
+XX XXX+X+XXX XX
+X g         + X
+X XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67582659] Asking 1 for move
+[67582666] Got 1's move
+[67583523] 0 is not ready
+[67583523] ===== Move Frame 30 ===========
+[67583524] No move from player 0
+[67583524] ==============================
+XXXXXXXXXXXXXXX
+X BX BXBXB XN X
+X          + +X
+XXX XX X XX XXX
+X             X
+X XXX XXX XXX X
+X         hef X
+XX XXX+X+XXX XX
+XgB         + X
+X XXX XXX XXX X
+X  a  b c  d  X
+XXX XX X XX XXX
+X+ +   +   + +X
+X NX NXNXN XN X
+XXXXXXXXXXXXXXX
+[67584026] Asking 1 for move
+[67584034] Got 1's move

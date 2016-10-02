@@ -1,0 +1,8 @@
+package action;
+
+import java.util.*;
+
+// This class is default static
+public class ActionList extends ArrayList<Actio>n {
+	
+}

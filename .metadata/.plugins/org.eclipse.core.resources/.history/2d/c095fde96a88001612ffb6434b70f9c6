@@ -1,0 +1,110 @@
+package action;
+
+import game.Enemy;
+
+import java.util.*;
+
+import com.orbischallenge.ctz.objects.FriendlyUnit; 
+import com.orbischallenge.ctz.objects.EnemyUnit; 
+import com.orbischallenge.ctz.objects.enums.Direction;
+import com.orbischallenge.ctz.objects.enums.ShotResult;
+
+// This class is default static
+public class ActionList extends HashMap<String, Action> {
+
+	private static final long serialVersionUID = 1L;
+
+	public ActionList() {
+		this.put("MoveNorth", new MovementAction("MoveNorth"));
+		this.put("MoveSouth", new MovementAction("MoveSouth"));
+		this.put("MoveEast", new MovementAction("MoveEast"));
+		this.put("MoveWest", new MovementAction("MoveWest"));
+		this.put("MoveNorthEast", new MovementAction("MoveNorthEast"));
+		this.put("MoveNorthWest", new MovementAction("MoveNorthWest"));
+		this.put("MoveSouthEast", new MovementAction("MoveSouthEast"));
+		this.put("MoveSouthWest", new MovementAction("MoveSouthWest"));
+		
+		this.put("ShootNorth", new ShootingAction("ShootNorth"));
+		this.put("ShootSouth", new ShootingAction("ShootSouth"));
+		this.put("ShootEast", new ShootingAction("ShootEast"));
+		this.put("ShootWest", new ShootingAction("ShootWest"));
+		this.put("ShootNorthEast", new ShootingAction("ShootNorthEast"));
+		this.put("ShootNorthWest", new ShootingAction("ShootNorthWest"));
+		this.put("ShootSouthEast", new ShootingAction("ShootSouthEast"));
+		this.put("ShootSouthWest", new ShootingAction("ShootSouthWest"));
+		
+		this.put("PickupObject", new OtherAction("PickupObject"));
+		this.put("ActivateShield", new OtherAction("ActivateShield"));
+	}
+	
+	// Gets highest valued action
+	public Action getHighestAction() {
+		Action highest = null;
+		for(Action a : this.values()) {
+			if(a.score < highest.score)
+				highest = a;
+		}
+		return highest;
+	}
+	
+	// This function only works for friendly units
+    public static void ExecuteAction(Action a) {
+    	switch (a.name) {
+    	case "MoveNorth":
+    		((FriendlyUnit) a.currentUnit.unit).move(Direction.NORTH);
+    	case "MoveSouth":
+    		((FriendlyUnit) a.currentUnit.unit).move(Direction.SOUTH);
+    	case "MoveEast":
+    		((FriendlyUnit) a.currentUnit.unit).move(Direction.EAST);
+    	case "MoveWest":
+    		((FriendlyUnit) a.currentUnit.unit).move(Direction.WEST);
+    	case "MoveNorthEast":
+    		((FriendlyUnit) a.currentUnit.unit).move(Direction.NORTH_EAST);
+    	case "MoveNorthWest":
+    		((FriendlyUnit) a.currentUnit.unit).move(Direction.NORTH_WEST);
+    	case "MoveSouthEast":
+    		((FriendlyUnit) a.currentUnit.unit).move(Direction.SOUTH_EAST);
+    	case "MoveSouthWest":
+    		((FriendlyUnit) a.currentUnit.unit).move(Direction.SOUTH_WEST);
+    	case "ShootNorth":
+    		((FriendlyUnit) a.currentUnit.unit).shootAt(GetEnemyInDirection(Direction.NORTH, a));
+    	case "ShootSouth":
+    		((FriendlyUnit) a.currentUnit.unit).shootAt(GetEnemyInDirection(Direction.SOUTH, a));
+    	case "ShootEast":
+    		((FriendlyUnit) a.currentUnit.unit).shootAt(GetEnemyInDirection(Direction.EAST, a));
+    	case "ShootWest":
+    		((FriendlyUnit) a.currentUnit.unit).shootAt(GetEnemyInDirection(Direction.WEST, a));
+    	case "ShootNorthEast":
+    		((FriendlyUnit) a.currentUnit.unit).shootAt(GetEnemyInDirection(Direction.NORTH_EAST, a));
+    	case "ShootNorthWest":
+    		((FriendlyUnit) a.currentUnit.unit).shootAt(GetEnemyInDirection(Direction.NORTH_WEST, a));
+    	case "ShootSouthEast":
+    		((FriendlyUnit) a.currentUnit.unit).shootAt(GetEnemyInDirection(Direction.SOUTH_EAST, a));
+    	case "ShootSouthWest":
+    		((FriendlyUnit) a.currentUnit.unit).shootAt(GetEnemyInDirection(Direction.SOUTH_WEST, a));
+    	case "PickupObject":
+    		((FriendlyUnit) a.currentUnit.unit).pickupItemAtPosition();
+    	case "ActivateShield":
+    		((FriendlyUnit) a.currentUnit.unit).activateShield();
+    	break;    	
+    	}
+    }
+    
+    public static EnemyUnit GetEnemyInDirection(Direction dir, Action a) {
+    	try {
+	    	for(int i = 0; i < 4; i++) {
+	    		if(Enemy.getUnit(i).getHealth() == 0) continue;
+	    		ShotResult result = ((FriendlyUnit) a.currentUnit.unit).shootAt(Enemy.getUnit(i));
+	    		if(result != ShotResult.CAN_HIT_ENEMY) continue;
+	    		if(Direction.fromTo(a.currentUnit.unit.getPosition(), Enemy.getUnit(i).getPosition()) != dir) continue;
+	    		return ((EnemyUnit)Enemy.getUnit(i));
+	    	}
+			throw new Exception("Cannot Get Enemy in Direction");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+    }
+    
+}

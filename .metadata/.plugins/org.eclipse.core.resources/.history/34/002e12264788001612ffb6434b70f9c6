@@ -1,0 +1,51 @@
+package game;
+
+import action.ActionList;
+
+import com.orbischallenge.ctz.Constants;
+import com.orbischallenge.ctz.objects.EnemyUnit;
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.objects.World;
+import com.orbischallenge.ctz.objects.enums.*
+import com.orbischallenge.game.engine.Point;
+
+@SuppressWarnings("unused")
+public class Enemy extends AnyUnit {
+	public static Enemy[] enemyUnits = {
+		new Enemy(),
+		new Enemy(),
+		new Enemy(),
+		new Enemy()
+	};
+
+	public static void setEnemyUnits(EnemyUnit[] units) {
+		for(int i = 0; i < 4; i++)
+			enemyUnits[i].enemyUnit = units[i];
+	}
+	public static EnemyUnit getUnit(int i) {
+		return enemyUnits[i].enemyUnit;
+	}
+	
+	
+	private EnemyUnit enemyUnit;
+	public void setEnemyUnit(EnemyUnit enemyUnit) {
+		this.enemyUnit = enemyUnit;
+	}
+	
+	@Override
+	public void CheckAllActions() {
+		Point enemyPosition = enemyUnit.getPosition();
+		Direction.NORTH.movePoint(enemyPosition);
+		Tiletype t = CustomWorld.world.getTile(enemyPosition);
+		
+		
+		for(int i = 0; i < 4; i++) {
+			EnemyUnit enemy = Enemy.getUnit(i);
+			if(enemyUnit.checkShotAgainstEnemy(enemy) == ShotResult.HIT_ENEMY) {
+				setActionForDirections(actions, Direction.fromTo(enemyUnit.getPosition(), enemy.getPosition()));
+			}
+		}
+		
+		actions.get("PickupObject").isValid = (enemyUnit.checkPickupResult() == PickupResult.PICK_UP_VALID);
+	}
+}

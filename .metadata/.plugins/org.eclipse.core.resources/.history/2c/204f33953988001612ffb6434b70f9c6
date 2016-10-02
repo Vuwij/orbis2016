@@ -1,0 +1,11 @@
+package action;
+
+import java.util.*;
+
+public class Action {
+	public float score;
+	public boolean isValid;
+	
+}
+
+

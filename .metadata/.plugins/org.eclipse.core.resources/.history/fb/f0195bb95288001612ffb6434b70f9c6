@@ -1,0 +1,68 @@
+package game;
+
+import java.util.*;
+
+import utils.DirectionList;
+import action.ActionList;
+
+import com.orbischallenge.ctz.Constants;
+import com.orbischallenge.ctz.objects.EnemyUnit;
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.objects.Pickup;
+import com.orbischallenge.ctz.objects.World;
+import com.orbischallenge.ctz.objects.enums.*;
+import com.orbischallenge.game.engine.Point;
+
+@SuppressWarnings("unused")
+public class Enemy extends AnyUnit {
+	public static Enemy[] enemyUnits = {
+		new Enemy(),
+		new Enemy(),
+		new Enemy(),
+		new Enemy()
+	};
+
+	public static void setEnemyUnits(EnemyUnit[] units) {
+		for(int i = 0; i < 4; i++)
+			enemyUnits[i].enemyUnit = units[i];
+	}
+	public static EnemyUnit getUnit(int i) {
+		return enemyUnits[i].enemyUnit;
+	}
+	
+	
+	private EnemyUnit enemyUnit;
+	public void setEnemyUnit(EnemyUnit enemyUnit) {
+		this.enemyUnit = enemyUnit;
+		
+		SetupActionInformation(this, friendlyUnits, enemyPositions);
+		
+		for(int i = 0; i < 4; i++) {
+			// If the friendly isn't dead evaluate action
+			if(enemyUnit.getHealth() != 0)
+				EvaluateAllActions();
+		}
+	}
+	
+	@Override
+	public void CheckAllActions() {
+		for(Map.Entry<String, Direction> dir : DirectionList.all.entrySet()) {
+			Point enemyPosition = enemyUnit.getPosition();
+			dir.getValue().movePoint(enemyPosition);
+			actions.get("Move" + dir.getKey()).isValid = CustomWorld.world.getTile(enemyPosition).doesBlockMovement();
+		}
+		
+		for(int i = 0; i < 4; i++) {
+			FriendlyUnit friendly = Friendly.getUnit(i);
+			if(friendly.checkShotAgainstEnemy(enemyUnit) == ShotResult.HIT_ENEMY) {
+				setActionForDirections(actions, Direction.fromTo(enemyUnit.getPosition(), friendly.getPosition()));
+			}
+		}
+		
+		Point enemyPosition = enemyUnit.getPosition();
+		for(Pickup p : CustomWorld.world.getPickups()) {
+			if(enemyPosition == p.getPosition()) actions.get("PickupObject").isValid = true;
+		}
+			
+	}
+}

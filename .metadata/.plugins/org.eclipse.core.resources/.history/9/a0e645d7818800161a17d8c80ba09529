@@ -1,0 +1,43 @@
+package action;
+
+public class OtherAction extends Action{
+
+	@Override
+	public void EvaluateScore() {
+		System.out.println("  Movement: " + this.name);
+		
+		try {
+			direction = NameToDirection();
+			newPosition = currentUnit.unit.getPosition();
+			newPosition = direction.movePoint(newPosition);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			score = 0;
+//			
+			if(this.name == "A")
+			score += EvaluatePickupObjectOrStop("PickupObject");
+			System.out.println("    EvaluatePickupObjectOrStop: " + score);
+			
+			score += EvaluateActivateShield("PickupObject");
+			System.out.println("    EvaluatePickupObjectOrStop: " + score);	
+//			score += CloserToControlPoint();
+//			System.out.println("    CloserToControlPoint: " + score);
+
+//			System.out.println("    Total Score: " + score);
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	public float EvaluatePickupObjectOrStop() {
+		return 0.0f;
+	}
+	
+	public float EvaluateActivateShield() {
+		return 0.0f;
+	}
+}

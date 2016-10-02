@@ -1,0 +1,33 @@
+package game;
+
+import com.orbischallenge.ctz.Constants;
+import com.orbischallenge.ctz.objects.EnemyUnit;
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.objects.World;
+import com.orbischallenge.ctz.objects.enums.Direction;
+
+import action.*;
+
+@SuppressWarnings("unused")
+public abstract class AnyUnit {
+	public ActionList actions = new ActionList();
+	
+	
+	protected void setActionForDirections(ActionList actions, Direction direction) {
+		if(direction == Direction.NORTH) actions.get("ShootNorth").isValid = true;
+		if(direction == Direction.SOUTH) actions.get("ShootSouth").isValid = true;
+		if(direction == Direction.EAST) actions.get("ShootEast").isValid = true;
+		if(direction == Direction.WEST) actions.get("ShootWest").isValid = true;
+		if(direction == Direction.NORTH_EAST) actions.get("ShootNorthEast").isValid = true;
+		if(direction == Direction.SOUTH_EAST) actions.get("ShootSouthEast").isValid = true;
+		if(direction == Direction.NORTH_WEST) actions.get("ShootNorthWest").isValid = true;
+		if(direction == Direction.SOUTH_WEST) actions.get("ShootSouthWest").isValid = true;
+	}
+	
+	public abstract void CheckAllActions();
+	
+	public void EvaluateAllActions() {
+		
+	}
+	
+}

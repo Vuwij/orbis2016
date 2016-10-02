@@ -1,0 +1,78 @@
+package action;
+
+import java.util.*;
+
+// This class is default static
+public class ActionList extends Dictionary<String, Action> {
+	private static final long serialVersionUID = 1L;
+
+	public ActionList() {
+		this.add(new MovementAction("MoveNorth"));
+		this.add(new MovementAction("MoveSouth"));
+		this.add(new MovementAction("MoveEast"));
+		this.add(new MovementAction("MoveWest"));
+		this.add(new MovementAction("MoveNorthEast"));
+		this.add(new MovementAction("MoveNorthWest"));
+		this.add(new MovementAction("MoveSouthEast"));
+		this.add(new MovementAction("MoveSouthWest"));
+		
+		this.add(new ShootingAction("ShootNorth"));
+		this.add(new ShootingAction("ShootSouth"));
+		this.add(new ShootingAction("ShootEast"));
+		this.add(new ShootingAction("ShootWest"));
+		this.add(new ShootingAction("ShootNorthEast"));
+		this.add(new ShootingAction("ShootNorthWest"));
+		this.add(new ShootingAction("ShootSouthEast"));
+		this.add(new ShootingAction("ShootSouthWest"));
+		
+		this.add(new OtherAction("PickupObject"));
+	}
+	
+	public <T extends Action> Action Add() {
+		if(T instanceof MovementAction)
+			
+		return n
+	}
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Enumeration<String> keys() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Enumeration<Action> elements() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Action get(Object key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Action put(String key, Action value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Action remove(Object key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

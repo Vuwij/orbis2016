@@ -1,0 +1,11 @@
+package action;
+
+abstract class Action {
+	public float score;
+}
+
+class MovementAction extends Action {
+	
+}
+
+

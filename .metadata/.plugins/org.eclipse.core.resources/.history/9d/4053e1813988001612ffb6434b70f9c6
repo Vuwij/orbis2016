@@ -1,0 +1,4 @@
+package action;
+
+public class MovementAction extends Action{
+}

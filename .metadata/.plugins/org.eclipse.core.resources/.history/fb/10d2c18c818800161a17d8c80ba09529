@@ -1,0 +1,15 @@
+package action;
+
+public class OtherAction extends Action{
+
+	public OtherAction(String name) {
+		super(name);
+	}
+
+	@Override
+	public void EvaluateScore() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

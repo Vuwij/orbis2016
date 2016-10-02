@@ -1,0 +1,38 @@
+package game;
+
+import com.orbischallenge.ctz.Constants;
+import com.orbischallenge.ctz.objects.EnemyUnit;
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.objects.World;
+
+import java.util.ArrayList;
+
+import action.*;
+
+@SuppressWarnings("unused")
+public class Friendly extends AnyUnit {
+	public static Enemy[] enemyUnits = {
+		new Enemy(),
+		new Enemy(),
+		new Enemy(),
+		new Enemy()
+	};
+
+	public static void setEnemyUnits(EnemyUnit[] units) {
+		for(int i = 0; i < 4; i++)
+			enemyUnits[i].enemyUnit = units[i];
+	}
+	
+	public FriendlyUnit friendlyUnit;
+	public void setFriendlyUnit(FriendlyUnit enemyUnit) {
+		this.friendlyUnit = enemyUnit;
+	}
+	
+	public void CheckAllActions() {
+		for(Action action : actions) {
+			if(action instanceof MovementAction) {
+				
+			}
+		}
+	}	
+}

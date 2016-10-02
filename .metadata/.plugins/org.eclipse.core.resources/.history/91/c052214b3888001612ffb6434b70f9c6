@@ -1,0 +1,7 @@
+package action;
+
+import java.util.*;
+
+public class ActionList extends ArrayList<Action> {
+
+}

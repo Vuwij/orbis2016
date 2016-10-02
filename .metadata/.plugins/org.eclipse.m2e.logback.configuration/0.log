@@ -533,3 +533,7 @@ Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to
 	at sun.security.provider.certpath.SunCertPathBuilder.engineBuild(Unknown Source) ~[na:1.8.0_101]
 	at java.security.cert.CertPathBuilder.build(Unknown Source) ~[na:1.8.0_101]
 	... 87 common frames omitted
+2016-10-01 18:48:18,037 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-8.1.14.v20131031
+2016-10-01 18:48:18,080 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started SelectChannelConnector@127.0.0.1:58333
+2016-10-02 03:47:27,947 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-8.1.14.v20131031
+2016-10-02 03:47:27,988 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started SelectChannelConnector@127.0.0.1:60489

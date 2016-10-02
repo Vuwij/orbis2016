@@ -1,0 +1,59 @@
+
+import java.util.ArrayList;
+
+import game.Friendly;
+import action.Action;
+
+import com.orbischallenge.ctz.Constants;
+import com.orbischallenge.ctz.objects.EnemyUnit;
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.objects.World;
+
+public class PlayerAI {
+	public PlayerAI() {
+    	
+    	
+    }
+
+	/**
+	 * This method will get called every turn.
+	 *
+	 * @param world The latest state of the world.
+	 * @param enemyUnits An array of all 4 units on the enemy team. Their order won't change.
+	 * @param friendlyUnits An array of all 4 units on your team. Their order won't change.
+	 */
+    public void doMove(World world, EnemyUnit[] enemyUnits, FriendlyUnit[] friendlyUnits) {
+    	// First setup the world and elimate all possible paths of movement
+    	setupGame(world, enemyUnits, friendlyUnits);
+    	
+    	
+    	// Gets the best action based on the score
+//    	for(int i = 0; i < 4; i++) {
+//    		Friendly.friendlyUnits[i].GetBestAction().ExecuteAction();
+//    	}
+    	
+    	// Mutliple attempts
+    	for(int i = 0; i < 4; i++) {
+    		ArrayList<Action> actions = Friendly.friendlyUnits[i].GetBestActions();
+    	}
+    	
+    }
+    
+    public void setupGame(World world, EnemyUnit[] enemyUnits, FriendlyUnit[] friendlyUnits) {
+    	
+    	// Setup
+    	game.CustomWorld.setWorld(world);
+    	game.Friendly.setFriendlyUnits(friendlyUnits);
+    	game.Enemy.setEnemyUnits(enemyUnits);
+    	
+    	// PreEvaluation
+    	game.Friendly.setupActions();
+    	game.Enemy.setupActions();
+    	
+    	// Evaluation
+    	game.Friendly.evaluateActions();
+    	game.Enemy.evaluateActions();
+    	
+    }
+    
+}

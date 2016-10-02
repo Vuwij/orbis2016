@@ -1,0 +1,22 @@
+package action;
+
+public class ShootingAction extends Action {
+
+	public ShootingAction(String name) {
+		super(name);
+	}
+
+	@Override
+	public void EvaluateScore() {
+		point = 0;
+		
+	}
+
+}
+
+//public class ShootingActionPoints {
+//	public static int KillsLastEnemy = 1000000;
+//	public static int KillsEnemy = 10000;
+//	public static int DoubleDamage = 2000;
+//	public static int NormalDamage = 1000;
+//}

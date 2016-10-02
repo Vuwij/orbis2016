@@ -1,0 +1,16 @@
+package action;
+
+import java.util.*;
+
+public class Action {
+	public String name;
+	public float score = 0.0;
+	public boolean isValid = false;
+	
+	public Action(String name_) {
+		name = name_;
+	}
+	
+}
+
+

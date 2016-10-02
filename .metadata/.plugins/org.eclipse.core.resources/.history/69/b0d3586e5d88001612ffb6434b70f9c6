@@ -1,0 +1,128 @@
+package action;
+
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.utils.*;
+import com.orbischallenge.ctz.objects.enums.*;
+import com.orbischallenge.game.engine.Point;
+
+import game.*;
+
+public class MovementAction extends Action{
+	public Direction direction;
+	public Point newPosition;
+	
+	public MovementAction(String name) {
+		super(name);
+		try {
+			direction = NameToDirection();
+			newPosition = currentUnit.unit.getPosition();
+			direction.movePoint(newPosition);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void EvaluateScore() {
+		score = 0;
+		score += EvaluateCloserToAlly();
+		score += EvaluateFurtherToAlly();
+		score += EvaluateCloserToEnemy();
+		score += EvaluateFurtherToEnemy();
+		score += ConstrainEnemyPosition();
+		score += CloserToWeaponPickup();
+		score += CloserToControlPoint();
+		score += CloserToMainFrame();
+		score += MoreRangeInMovement();
+		score += MoreRangeInShooting();
+	}
+	
+	private Direction NameToDirection() throws Exception {
+		switch(this.name) {
+		case "MoveNorth": return Direction.NORTH;
+		case "MoveSouth": return Direction.SOUTH;
+		case "MoveEast": return Direction.EAST;
+		case "MoveWest": return Direction.WEST;
+		case "MoveNorthEast": return Direction.NORTH_EAST;
+		case "MoveSouthEast": return Direction.SOUTH_EAST;
+		case "MoveNorthWest": return Direction.NORTH_WEST;
+		case "MoveSouthWest": return Direction.SOUTH_WEST;
+		default : throw new Exception("WTF is this direction:" + this.name);
+		}
+	}
+	
+	private float EvaluateCloserToAlly() {
+		int totalDistanceToAllies = 0;
+		for(AnyUnit friend : friendlyUnits) {
+			totalDistanceToAllies += PointUtils.chebyshevDistance(friend.unit.getPosition(), newPosition);
+		}
+		
+		return (100 / totalDistanceToAllies) * MovementActionPoints.CloserToAlly;
+	}
+	
+	private float EvaluateFurtherToAlly() {
+		int totalDistanceToAllies = 0;
+		for(AnyUnit friend : friendlyUnits) {
+			totalDistanceToAllies += PointUtils.chebyshevDistance(friend.unit.getPosition(), currentUnit.unit.getPosition());
+		}
+		
+		return totalDistanceToAllies * MovementActionPoints.FurtherToAlly;
+	}
+	
+	private float EvaluateCloserToEnemy() {
+		int totalDistanceToEnemies = 0;
+		for(AnyUnit enemy : enemyUnits) {
+			totalDistanceToEnemies += PointUtils.chebyshevDistance(enemy.unit.getPosition(), currentUnit.unit.getPosition());
+		}
+		
+		return totalDistanceToEnemies * MovementActionPoints.CloserToEnemy;
+	}
+	
+	private float EvaluateFurtherToEnemy() {
+		int totalDistanceToEnemies = 0;
+		for(AnyUnit enemy : enemyUnits) {
+			totalDistanceToEnemies += PointUtils.chebyshevDistance(enemy.unit.getPosition(), currentUnit.unit.getPosition());
+		}
+		
+		return (100 / totalDistanceToEnemies) * MovementActionPoints.FurtherToEnemy;
+	}
+	
+	//TODO Make this one extremely good
+	private float ConstrainEnemyPosition() {
+		return 0.0f;
+	}
+	
+	private float CloserToWeaponPickup() {
+		// If the enemy can reach the weapon first then it would be a bit less
+		
+		return 0.0f;
+	}
+	
+	private float CloserToControlPoint() {
+		return 0.0f;
+	}
+	
+	private float CloserToMainFrame() {
+		return 0.0f;
+	}
+	
+	private float MoreRangeInMovement() {
+		return 0.0f;
+	}
+	
+	private float MoreRangeInShooting() {
+		return 0.0f;
+	}
+}
+
+/// FOR REFRENCE
+//public class MovementActionPoints {
+//	public static int CloserToAlly = 100;
+//	public static int FurtherToAlly = 100;
+//	public static int CloserToEnemy = 100;
+//	public static int FurtherToEnemy = 100;
+//	public static int ConstrainEnemyPosition = 1000;
+//	public static int CloserToWeaponPickup = 1000;
+//	public static int CloserToControlPoint = 1000;
+//	public static int CloserToMainFrame = 2000;
+//}

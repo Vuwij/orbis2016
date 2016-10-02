@@ -1,0 +1,8 @@
+package action;
+
+public class MovementActionPoints {
+	static int CloserToAlly = 100;
+	static int FurtherToAlly = 100;
+	static int ConstrainEnemyPosition = 1000;
+	
+}

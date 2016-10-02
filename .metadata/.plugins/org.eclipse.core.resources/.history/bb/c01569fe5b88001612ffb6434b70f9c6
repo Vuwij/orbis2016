@@ -1,0 +1,90 @@
+package action;
+
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.utils.*;
+
+import game.*;
+
+public class MovementAction extends Action{
+
+	public MovementAction(String name) {
+		super(name);
+	}
+
+	@Override
+	public void EvaluateScore() {
+		score = 0;
+		score += EvaluateCloserToAlly();
+		score += EvaluateFurtherToAlly();
+		score += EvaluateCloserToEnemy();
+		score += ConstrainEnemyPosition();
+		score += CloserToWeaponPickup();
+		score += CloserToControlPoint();
+		score += CloserToMainFrame();
+		score += MoreRangeInMovement();
+		score += MoreRangeInShooting();
+	}
+	
+	private float EvaluateCloserToAlly() {
+		int totalDistanceToAllies = 0;
+		for(AnyUnit friend : friendlyUnits) {
+			totalDistanceToAllies += PointUtils.chebyshevDistance(friend.unit.getPosition(), currentUnit.unit.getPosition());
+		}
+		
+		return (100 / totalDistanceToAllies) * MovementActionPoints.CloserToAlly;
+	}
+	
+	private float EvaluateFurtherToAlly() {
+		int totalDistanceToAllies = 0;
+		for(AnyUnit friend : friendlyUnits) {
+			totalDistanceToAllies += PointUtils.chebyshevDistance(friend.unit.getPosition(), currentUnit.unit.getPosition());
+		}
+		
+		return totalDistanceToAllies * MovementActionPoints.FurtherToAlly;
+	}
+	
+	private float EvaluateCloserToEnemy() {
+		int totalDistanceToEnemies = 0;
+		for(AnyUnit enemy : enemyUnits) {
+			totalDistanceToEnemies += PointUtils.chebyshevDistance(enemy.unit.getPosition(), currentUnit.unit.getPosition());
+		}
+		
+		return totalDistanceToEnemies * MovementActionPoints.FurtherToEnemy;
+	}
+	
+	private float ConstrainEnemyPosition() {
+		return 0.0f;
+	}
+	
+	private float CloserToWeaponPickup() {
+		return 0.0f;
+	}
+	
+	private float CloserToControlPoint() {
+		return 0.0f;
+	}
+	
+	private float CloserToMainFrame() {
+		return 0.0f;
+	}
+	
+	private float MoreRangeInMovement() {
+		return 0.0f;
+	}
+	
+	private float MoreRangeInShooting() {
+		return 0.0f;
+	}
+}
+
+/// FOR REFRENCE
+//public class MovementActionPoints {
+//	public static int CloserToAlly = 100;
+//	public static int FurtherToAlly = 100;
+//	public static int CloserToEnemy = 100;
+//	public static int FurtherToEnemy = 100;
+//	public static int ConstrainEnemyPosition = 1000;
+//	public static int CloserToWeaponPickup = 1000;
+//	public static int CloserToControlPoint = 1000;
+//	public static int CloserToMainFrame = 2000;
+//}

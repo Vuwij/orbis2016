@@ -1,0 +1,49 @@
+package game;
+
+import java.util.Map;
+
+import com.orbischallenge.ctz.Constants;
+import com.orbischallenge.ctz.objects.EnemyUnit;
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.objects.World;
+import com.orbischallenge.ctz.objects.enums.Direction;
+
+import com.orbischallenge.game.engine.Point;
+
+import action.*;
+
+@SuppressWarnings("unused")
+public abstract class AnyUnit {
+	public ActionList actions = new ActionList();
+	
+	protected void setActionForDirections(ActionList actions, Direction direction) {
+		if(direction == Direction.NORTH) actions.get("ShootNorth").isValid = true;
+		if(direction == Direction.SOUTH) actions.get("ShootSouth").isValid = true;
+		if(direction == Direction.EAST) actions.get("ShootEast").isValid = true;
+		if(direction == Direction.WEST) actions.get("ShootWest").isValid = true;
+		if(direction == Direction.NORTH_EAST) actions.get("ShootNorthEast").isValid = true;
+		if(direction == Direction.SOUTH_EAST) actions.get("ShootSouthEast").isValid = true;
+		if(direction == Direction.NORTH_WEST) actions.get("ShootNorthWest").isValid = true;
+		if(direction == Direction.SOUTH_WEST) actions.get("ShootSouthWest").isValid = true;
+	}
+	
+	public abstract void CheckAllActions();
+	
+	// Goes through the action loop and checks the points for each action
+	public void EvaluateAllActions() {
+		for(Map.Entry<String, Action> action : actions.entrySet()) {
+			if(action.getValue().isValid)
+				action.getValue().EvaluateScore();
+		}
+	}
+	
+	// Setups all the actions with the required information
+	public void SetupActionInformation(Point unitPosition, Point[] enemyPositions) {
+		for(Map.Entry<String, Action> action : actions.entrySet()) {
+			action.getValue().currentPosition = unitPosition;
+			action.getValue().enemyPositions = enemyPositions;
+			action.getValue().friendlyPositions = enemyPositions;
+		}
+	}
+	
+}

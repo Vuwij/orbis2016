@@ -1,0 +1,193 @@
+package action;
+
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.objects.Pickup;
+import com.orbischallenge.ctz.utils.*;
+import com.orbischallenge.ctz.objects.enums.*;
+import com.orbischallenge.game.engine.Point;
+
+import game.*;
+
+public class MovementAction extends Action{
+	public final int standardDistance = 100;
+	
+	public Direction direction;
+	public Point newPosition;
+	
+	public MovementAction(String name) {
+		super(name);
+		try {
+			direction = NameToDirection();
+			newPosition = currentUnit.unit.getPosition();
+			direction.movePoint(newPosition);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void EvaluateScore() {
+		score = 0;
+		score += EvaluateCloserToAlly();
+		score += EvaluateFurtherToAlly();
+		score += EvaluateCloserToEnemy();
+		score += EvaluateFurtherToEnemy();
+		score += ConstrainEnemyPosition();
+		score += CloserToWeaponPickup();
+		score += CloserToControlPoint();
+		score += CloserToMainFrame();
+		score += MoreRangeInMovement();
+		score += MoreRangeInShooting();
+	}
+	
+	private Direction NameToDirection() throws Exception {
+		switch(this.name) {
+		case "MoveNorth": return Direction.NORTH;
+		case "MoveSouth": return Direction.SOUTH;
+		case "MoveEast": return Direction.EAST;
+		case "MoveWest": return Direction.WEST;
+		case "MoveNorthEast": return Direction.NORTH_EAST;
+		case "MoveSouthEast": return Direction.SOUTH_EAST;
+		case "MoveNorthWest": return Direction.NORTH_WEST;
+		case "MoveSouthWest": return Direction.SOUTH_WEST;
+		default : throw new Exception("WTF is this direction:" + this.name);
+		}
+	}
+	
+	private int getPositionBonusDelta(Point toPosition) {
+		int delta = 0;
+		delta += PointUtils.chebyshevDistance(toPosition, newPosition);
+		delta -= PointUtils.chebyshevDistance(toPosition, currentUnit.unit.getPosition());
+		return delta;
+	}
+	
+	private float EvaluateCloserToAlly() {
+		int totalDistanceToAllies = 0;
+		for(AnyUnit friend : friendlyUnits) {
+			totalDistanceToAllies += getPositionBonusDelta(friend.unit.getPosition());
+		}
+		
+		return (standardDistance / totalDistanceToAllies) * MovementActionPoints.CloserToAlly;
+	}
+	
+	private float EvaluateFurtherToAlly() {
+		int totalDistanceToAllies = 0;
+		for(AnyUnit friend : friendlyUnits) {
+			totalDistanceToAllies += getPositionBonusDelta(friend.unit.getPosition());
+		}
+		
+		return totalDistanceToAllies * MovementActionPoints.FurtherToAlly;
+	}
+	
+	private float EvaluateCloserToEnemy() {
+		int totalDistanceToEnemies = 0;
+		for(AnyUnit enemy : enemyUnits) {
+			totalDistanceToEnemies += getPositionBonusDelta(enemy.unit.getPosition());
+		}
+		
+		return (standardDistance / totalDistanceToEnemies) * MovementActionPoints.CloserToEnemy;
+	}
+	
+	private float EvaluateFurtherToEnemy() {
+		int totalDistanceToEnemies = 0;
+		for(AnyUnit enemy : enemyUnits) {
+			totalDistanceToEnemies += getPositionBonusDelta(enemy.unit.getPosition());
+		}
+		
+		return totalDistanceToEnemies * MovementActionPoints.FurtherToEnemy;
+	}
+	
+	//TODO Make this one extremely good
+	private float ConstrainEnemyPosition() {
+		return 0.0f;
+	}
+	
+	private float ItemBonusCalculator(float pickUpDistance, float enemyDistanceDelta, float weaponDamage, float range, float enemyHealth) {
+		float bonus = pickUpDistance;
+		// Range is more important when the enemy is closer
+		bonus *= (range / enemyDistanceDelta);
+		
+		return 0.0f;
+	}
+	
+	/* If you were closer to an enemy, damage is more important
+	 * If you were further from an enemy, damage is less important
+	 * 
+	 * But when you pick up the item, the enemy might have moved
+	 * 
+	 * You want to move to a single weapon, rather than multiple, so bonuses are important
+	 * 
+	 * Pickup Distance +
+	 * 
+	 */
+	private float CloserToWeaponPickup() {
+		// If the enemy can reach the weapon first then it would be a bit less
+		for(Pickup pickup : CustomWorld.world.getPickups()) {
+			float pickUpDistance = (float) PointUtils.chebyshevDistance(pickup.getPosition(), newPosition);
+			
+			float enemyDistanceDelta = (float) standardDistance;
+			float enemyHealth = 0.0f;
+			
+			for(AnyUnit enemy : this.enemyUnits) {
+				enemyDistanceDelta /= PointUtils.chebyshevDistance(enemy.unit.getPosition(), newPosition);
+				enemyHealth += enemy.unit.getHealth();
+			}
+			
+			if(pickup.getPickupType() == PickupType.WEAPON_LASER_RIFLE) {
+				int weaponDamage = 8;
+				int range = 4;
+				return ItemBonusCalculator(pickUpDistance, enemyDistanceDelta, weaponDamage, range, enemyHealth);
+			}
+			else if(pickup.getPickupType() == PickupType.WEAPON_RAIL_GUN) {
+				int weaponDamage = 6;
+				int range = 10;
+				return ItemBonusCalculator(pickUpDistance, enemyDistanceDelta, weaponDamage, range, enemyHealth);			
+			}
+			else if(pickup.getPickupType() == PickupType.WEAPON_SCATTER_GUN) {
+				int weaponDamage = 25;
+				int range = 2;
+				return ItemBonusCalculator(pickUpDistance, enemyDistanceDelta, weaponDamage, range, enemyHealth);
+			}
+			else if(pickup.getPickupType() == PickupType.SHIELD) {
+				float weaponDamage = (100 / (float) this.currentUnit.unit.getHealth());
+				int range = 5;
+				return ItemBonusCalculator(pickUpDistance, enemyDistanceDelta, weaponDamage, range, enemyHealth);
+			}
+			else if(pickup.getPickupType() == PickupType.REPAIR_KIT) {
+				float weaponDamage = (30 / (float) this.currentUnit.unit.getHealth());
+				int range = 5;
+				return ItemBonusCalculator(pickUpDistance, enemyDistanceDelta, weaponDamage, range, enemyHealth);
+			}
+		}
+		
+		return 0.0f;
+	}
+	
+	private float CloserToControlPoint() {
+		return 0.0f;
+	}
+	
+	private float CloserToMainFrame() {
+		return 0.0f;
+	}
+	
+	private float MoreRangeInMovement() {
+		return 0.0f;
+	}
+	
+	private float MoreRangeInShooting() {
+		return 0.0f;
+	}
+}
+
+/// FOR REFRENCE
+//public class MovementActionPoints {
+//	public static int CloserToAlly = 100;
+//	public static int FurtherToAlly = 100;
+//	public static int CloserToEnemy = 100;
+//	public static int FurtherToEnemy = 100;
+//	public static int ConstrainEnemyPosition = 1000;
+//	public static int CloserToWeaponPickup = 1000;
+//	public static int CloserToControlPoint = 1000;
+//	public static int CloserToMainFrame = 2000;
+//}

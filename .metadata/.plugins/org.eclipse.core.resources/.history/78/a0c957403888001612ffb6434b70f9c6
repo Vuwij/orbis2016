@@ -1,0 +1,13 @@
+package action;
+
+import java.util.*;
+
+public class Action {
+	public static ArrayList<Action> masterActionList;
+	
+	public float score;
+	public boolean isValid;
+	
+}
+
+

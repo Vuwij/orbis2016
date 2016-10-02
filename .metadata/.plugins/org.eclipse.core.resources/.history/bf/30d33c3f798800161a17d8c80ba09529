@@ -1,0 +1,118 @@
+package action;
+
+import game.*;
+
+import com.orbischallenge.ctz.objects.EnemyUnit;
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.objects.enums.ShotResult;
+
+public class ShootingAction extends Action {
+	
+	public ShootingAction(String name) {
+		super(name);
+	}
+	
+	public boolean evaluatedDoubleDamage = false;
+	
+	@Override
+	public void EvaluateScore() {
+		System.out.println("  Shooting: " + this.name);
+		try {
+			score = 0;
+			score += EvaluateKillsLastEnemy();
+			score += EvaluateKillsEnemy();
+			score += EvaluateDoubleDamage();
+			score += EvaluateNormalDamage();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	// Kills more if enemy count is less
+	private float EvaluateKillsLastEnemy() {
+		int enemyCount = 4;
+		for(AnyUnit enemy : enemyUnits) {
+			if(enemy.unit.getHealth() == 0) {
+				enemyCount--;
+			}
+		}
+		
+		return ShootingActionPoints.KillsLastEnemy / enemyCount;
+		
+	}
+	
+	private AnyUnit GetShotEnemy() throws Exception {
+		for(AnyUnit enemy : enemyUnits) {
+			if(currentUnit instanceof Friendly) {
+				if (((FriendlyUnit) currentUnit.unit).checkShotAgainstEnemy((EnemyUnit) enemy.unit) == ShotResult.HIT_ENEMY) {
+					return enemy;
+				}
+			}
+			else if(currentUnit instanceof Enemy) {
+				if (((FriendlyUnit) enemy.unit).checkShotAgainstEnemy((EnemyUnit) currentUnit.unit) == ShotResult.HIT_ENEMY) {
+					return enemy;
+				}
+			}
+		}
+		throw new Exception("No Enemy Shot Error");
+	}
+	
+	private float EvaluateKillsEnemy() throws Exception {
+		AnyUnit enemyUnitShot = GetShotEnemy();
+		
+		if(enemyUnitShot.unit.getHealth() <= currentUnit.unit.getCurrentWeapon().getDamage()) {
+			return ShootingActionPoints.KillsEnemy;
+		}
+		
+		return 0.0f;
+	}
+	
+	private float EvaluateDoubleDamage() throws Exception {
+		AnyUnit enemyUnitShot = GetShotEnemy();
+		
+		int damageMultiplier = 1;
+		
+		if(currentUnit instanceof Friendly) {
+			for(int i = 0; i < 4; i++) {
+				if(Friendly.getUnit(i).getHealth() == 0) continue;
+				if(Friendly.friendlyUnits[i] == currentUnit) continue;
+				
+				if(Friendly.friendlyUnits[i].checkShotAgainstEnemy((EnemyUnit) enemyUnitShot.unit) == ShotResult.CAN_HIT_ENEMY) {
+					damageMultiplier *= 2;
+				}
+			}
+		}
+		if(currentUnit instanceof Enemy) {
+			for(int i = 0; i < 4; i++) {
+				if(Enemy.getUnit(i).getHealth() == 0) continue;
+				if(Enemy.enemyUnits[i] == currentUnit) continue;
+				
+				if(Enemy.enemyUnits[i].checkShotAgainstEnemy((FriendlyUnit) enemyUnitShot.unit) == ShotResult.CAN_HIT_ENEMY) {
+					damageMultiplier *= 2;
+				}
+			}
+		}
+		if(damageMultiplier == 1) return 0.0f;
+		else return (damageMultiplier * ShootingActionPoints.DoubleDamage);
+	}
+	
+	private float EvaluateNormalDamage() throws Exception {
+		AnyUnit enemyUnitShot = GetShotEnemy();
+		
+		float damage = (float) currentUnit.unit.getCurrentWeapon().getDamage();
+		float enemyHealth = (float) enemyUnitShot.unit.getHealth();
+		
+		// TODO if enemy controls mainframe or controlPoint then improve the number
+		
+		// TODO Normalize this equation
+		return (damage / enemyHealth * 30 / 11) * ShootingActionPoints.NormalDamage;
+	}
+
+}
+
+//public class ShootingActionPoints {
+//	public static int KillsLastEnemy = 1000000;
+//	public static int KillsEnemy = 10000;
+//	public static int DoubleDamage = 2000;
+//	public static int NormalDamage = 1000;
+//}

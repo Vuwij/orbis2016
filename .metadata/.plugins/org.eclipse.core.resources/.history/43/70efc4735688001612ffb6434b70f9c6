@@ -1,0 +1,76 @@
+package action;
+
+import game.*;
+
+import com.orbischallenge.ctz.objects.EnemyUnit;
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.objects.enums.ShotResult;
+
+public class ShootingAction extends Action {
+
+	public ShootingAction(String name) {
+		super(name);
+	}
+
+	@Override
+	public void EvaluateScore() {
+		try {
+			score = 0;
+			score += EvaluateKillsLastEnemy();
+			score += EvaluateKillsEnemy();
+			score += EvaluateDoubleDamage();
+			score += EvaluateNormalDamage();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	private float EvaluateKillsLastEnemy() {
+		for(AnyUnit enemy : enemyUnits) {
+			if(enemy.unit.getHealth() != 0) {
+				return 0.0f;
+			}
+		}
+		
+		return ShootingActionPoints.KillsLastEnemy;
+	}
+	
+	private AnyUnit GetShotEnemy() {
+		return null;
+	}
+	
+	private float EvaluateKillsEnemy() throws Exception {
+		AnyUnit enemyUnitShot = null;
+		for(AnyUnit enemy : enemyUnits) {
+			if(currentUnit instanceof Friendly) {
+				if (((FriendlyUnit) currentUnit.unit).checkShotAgainstEnemy((EnemyUnit) enemy.unit) == ShotResult.HIT_ENEMY) {
+					enemyUnitShot = enemy;
+				}
+			}
+			else if(currentUnit instanceof Enemy) {
+				if (((FriendlyUnit) enemy.unit).checkShotAgainstEnemy((EnemyUnit) currentUnit.unit) == ShotResult.HIT_ENEMY) {
+					enemyUnitShot = enemy;
+				}
+			}
+		}
+		if(enemyUnitShot == null) throw new Exception("No Enemy Shot Error");
+		
+		return (((float)enemyUnitShot.unit.getHealth()) / 30.0f) * ShootActionPoints.KillsEnemy;
+	}
+	
+	private float EvaluateDoubleDamage() {
+		return 0.0f;
+	}
+	
+	private float EvaluateNormalDamage() {
+		return 0.0f;
+	}
+
+}
+
+//public class ShootingActionPoints {
+//	public static int KillsLastEnemy = 1000000;
+//	public static int KillsEnemy = 10000;
+//	public static int DoubleDamage = 2000;
+//	public static int NormalDamage = 1000;
+//}

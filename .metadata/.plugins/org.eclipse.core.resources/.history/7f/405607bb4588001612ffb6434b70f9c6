@@ -1,0 +1,62 @@
+package game;
+
+import com.orbischallenge.ctz.Constants;
+import com.orbischallenge.ctz.objects.EnemyUnit;
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.objects.World;
+import com.orbischallenge.ctz.objects.enums.Direction;
+import com.orbischallenge.ctz.objects.enums.MoveResult;
+import com.orbischallenge.ctz.objects.enums.ShotResult;
+
+import java.util.*;
+
+import action.*;
+
+@SuppressWarnings("unused")
+public class Friendly extends AnyUnit {
+	public static Friendly[] friendlyUnits = {
+		new Friendly(),
+		new Friendly(),
+		new Friendly(),
+		new Friendly()
+	};
+
+	public static void setEnemyUnits(FriendlyUnit[] units) {
+		for(int i = 0; i < 4; i++)
+			friendlyUnits[i].friendlyUnit = units[i];
+	}
+	public static FriendlyUnit getUnit(int i) {
+		return friendlyUnits[i].friendlyUnit;
+	}
+	
+	public FriendlyUnit friendlyUnit;
+	public void setFriendlyUnits(FriendlyUnit unit) {
+		this.friendlyUnit = unit;
+	}
+	
+	public void CheckAllActions() {
+		actions.get("MoveNorth").isValid = (friendlyUnit.checkMove(Direction.NORTH) == MoveResult.MOVE_VALID);
+		actions.get("MoveSouth").isValid = (friendlyUnit.checkMove(Direction.SOUTH) == MoveResult.MOVE_VALID);
+		actions.get("MoveEast").isValid = (friendlyUnit.checkMove(Direction.EAST) == MoveResult.MOVE_VALID);
+		actions.get("MoveWest").isValid = (friendlyUnit.checkMove(Direction.WEST) == MoveResult.MOVE_VALID);
+		actions.get("MoveNorthEast").isValid = (friendlyUnit.checkMove(Direction.NORTH_EAST) == MoveResult.MOVE_VALID);
+		actions.get("MoveNorthWest").isValid = (friendlyUnit.checkMove(Direction.NORTH_WEST) == MoveResult.MOVE_VALID);
+		actions.get("MoveSouthEast").isValid = (friendlyUnit.checkMove(Direction.SOUTH_EAST) == MoveResult.MOVE_VALID);
+		actions.get("MoveSouthWest").isValid = (friendlyUnit.checkMove(Direction.SOUTH_WEST) == MoveResult.MOVE_VALID);
+		
+		for(int i = 0; i < 4; i++) {
+			EnemyUnit enemy = Enemy.getUnit(i);
+			if(friendlyUnit.checkShotAgainstEnemy(enemy) == ShotResult.HIT_ENEMY) {
+				getActionForDirections(actions, Direction.fromTo(friendlyUnit.getPosition(), enemy.getPosition()));
+			}
+		}
+	}
+	
+	private void getActionForDirections(ActionList actions, Direction direction) {
+		if(direction == Direction.NORTH) actions.get("ShootNorth").isValid = true;
+		if(direction == Direction.SOUTH) actions.get("North").isValid = true;
+		if(direction == Direction.EAST) actions.get("North").isValid = true;
+		if(direction == Direction.WEST) actions.get("North").isValid = true;
+	}
+	
+}

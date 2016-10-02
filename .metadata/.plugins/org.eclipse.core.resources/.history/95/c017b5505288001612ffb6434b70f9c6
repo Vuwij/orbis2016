@@ -1,0 +1,39 @@
+package action;
+
+import game.Enemy;
+
+public class ShootingAction extends Action {
+
+	public ShootingAction(String name) {
+		super(name);
+	}
+
+	@Override
+	public void EvaluateScore() {
+		score = 0;
+		
+	}
+	
+	private int EvaluateKillsLastEnemy() {
+	}
+	
+	private int EvaluateKillsEnemy() {
+		
+	}
+	
+	private int EvaluateDoubleDamage() {
+	
+	}
+	
+	private int EvaluateNormalDamage() {
+	
+	}
+
+}
+
+//public class ShootingActionPoints {
+//	public static int KillsLastEnemy = 1000000;
+//	public static int KillsEnemy = 10000;
+//	public static int DoubleDamage = 2000;
+//	public static int NormalDamage = 1000;
+//}

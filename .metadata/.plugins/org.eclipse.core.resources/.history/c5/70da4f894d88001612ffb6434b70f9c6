@@ -1,0 +1,15 @@
+package action;
+
+public class MovementAction extends Action{
+
+	public MovementAction(String name) {
+		super(name);
+	}
+
+	@Override
+	public void EvaluateScore() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

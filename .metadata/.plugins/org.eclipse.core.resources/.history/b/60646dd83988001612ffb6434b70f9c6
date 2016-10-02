@@ -1,0 +1,23 @@
+package action;
+
+import java.util.*;
+
+// This class is default static
+public class ActionList extends ArrayList<Action> {
+	private static final long serialVersionUID = 1L;
+
+	public ActionList() {
+		this.add(new MovementAction("MoveNorth"));
+		this.add(new MovementAction("MoveSouth"));
+		this.add(new MovementAction("MoveEast"));
+		this.add(new MovementAction("MoveWest"));
+		this.add(new MovementAction("MoveNorthEast"));
+		this.add(new MovementAction("MoveNorthWest"));
+		this.add(new MovementAction("MoveNorth"));
+		this.add(new MovementAction("MoveNorth"));
+		this.add(new MovementAction("MoveNorth"));
+		this.add(new MovementAction("MoveNorth"));
+		this.add(new MovementAction("MoveNorth"));
+		this.add(new MovementAction("MoveNorth"));
+	}
+}

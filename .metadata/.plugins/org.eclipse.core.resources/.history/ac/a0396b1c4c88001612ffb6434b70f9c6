@@ -1,0 +1,6 @@
+package action;
+
+public enum OtherActionPoints {
+	public static int PlayerHealthLow = 10000;
+	
+}

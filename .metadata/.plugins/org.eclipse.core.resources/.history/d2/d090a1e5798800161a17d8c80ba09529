@@ -1,0 +1,51 @@
+package action;
+
+import game.Enemy;
+
+import java.util.*;
+
+import com.orbischallenge.ctz.objects.FriendlyUnit; 
+import com.orbischallenge.ctz.objects.EnemyUnit; 
+import com.orbischallenge.ctz.objects.enums.Direction;
+import com.orbischallenge.ctz.objects.enums.ShotResult;
+
+// This class is default static
+public class ActionList extends HashMap<String, Action> {
+
+	private static final long serialVersionUID = 1L;
+
+	public ActionList() {
+		this.put("MoveNorth", new MovementAction("MoveNorth"));
+		this.put("MoveSouth", new MovementAction("MoveSouth"));
+		this.put("MoveEast", new MovementAction("MoveEast"));
+		this.put("MoveWest", new MovementAction("MoveWest"));
+		this.put("MoveNorthEast", new MovementAction("MoveNorthEast"));
+		this.put("MoveNorthWest", new MovementAction("MoveNorthWest"));
+		this.put("MoveSouthEast", new MovementAction("MoveSouthEast"));
+		this.put("MoveSouthWest", new MovementAction("MoveSouthWest"));
+		
+		this.put("ShootNorth", new ShootingAction("ShootNorth"));
+		this.put("ShootSouth", new ShootingAction("ShootSouth"));
+		this.put("ShootEast", new ShootingAction("ShootEast"));
+		this.put("ShootWest", new ShootingAction("ShootWest"));
+		this.put("ShootNorthEast", new ShootingAction("ShootNorthEast"));
+		this.put("ShootNorthWest", new ShootingAction("ShootNorthWest"));
+		this.put("ShootSouthEast", new ShootingAction("ShootSouthEast"));
+		this.put("ShootSouthWest", new ShootingAction("ShootSouthWest"));
+		
+		this.put("PickupObject", new OtherAction("PickupObject"));
+		this.put("ActivateShield", new OtherAction("ActivateShield"));
+	}
+	
+	// Gets highest valued action
+	public Action getBestAction() {
+		Action highest = null;
+		for(Action a : this.values()) {
+			if(highest == null) highest = a;
+			if(a.score < highest.score)
+				highest = a;
+		}
+		return highest;
+	}
+	
+}

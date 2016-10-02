@@ -1,0 +1,70 @@
+package action;
+
+public class MovementAction extends Action{
+
+	public MovementAction(String name) {
+		super(name);
+	}
+
+	@Override
+	public void EvaluateScore() {
+		score += EvaluateCloserToAlly();
+		score += EvaluateFurtherToAlly();
+		score += EvaluateCloserToEnemy();
+		score += ConstrainEnemyPosition();
+		score += CloserToWeaponPickup();
+		score += CloserToControlPoint();
+		score += CloserToMainFrame();
+		score += MoreRangeInMovement();
+		score += MoreRangeInShooting();
+	}
+	
+	private float EvaluateCloserToAlly() {
+		
+		return 0.0f;
+	}
+	
+	private float EvaluateFurtherToAlly() {
+		return 0.0f;
+	}
+	
+	private float EvaluateCloserToEnemy() {
+		return 0.0f;
+	}
+	
+	private float ConstrainEnemyPosition() {
+		return 0.0f;
+	}
+	
+	private float CloserToWeaponPickup() {
+		return 0.0f;
+	}
+	
+	private float CloserToControlPoint() {
+		return 0.0f;
+	}
+	
+	private float CloserToMainFrame() {
+		return 0.0f;
+	}
+	
+	private float MoreRangeInMovement() {
+		return 0.0f;
+	}
+	
+	private float MoreRangeInShooting() {
+		return 0.0f;
+	}
+}
+
+/// FOR REFRENCE
+//public class MovementActionPoints {
+//	public static int CloserToAlly = 100;
+//	public static int FurtherToAlly = 100;
+//	public static int CloserToEnemy = 100;
+//	public static int FurtherToEnemy = 100;
+//	public static int ConstrainEnemyPosition = 1000;
+//	public static int CloserToWeaponPickup = 1000;
+//	public static int CloserToControlPoint = 1000;
+//	public static int CloserToMainFrame = 2000;
+//}

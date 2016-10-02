@@ -1,0 +1,12 @@
+package action;
+
+import java.util.*;
+
+// This class is default static
+public class ActionList extends Dictionary<Action> {
+	private static final long serialVersionUID = 1L;
+	
+	public ActionList() {
+		this.add(new MovementAction());
+	}
+}

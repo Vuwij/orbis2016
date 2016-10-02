@@ -1,0 +1,10 @@
+package action;
+
+import java.util.*;
+
+// This class is default static
+public class ActionList extends ArrayList<Action> {
+	public ActionList() {
+		this.add(new MovementAction());
+	}
+}

@@ -1,0 +1,16 @@
+package action;
+
+import java.util.List;
+
+public class Action {
+	public static List<Action> actionList;
+	
+	
+	
+	
+	public float score;
+	public boolean isValid;
+	
+}
+
+

@@ -1,0 +1,7 @@
+package action;
+
+public class MovementAction extends Action{
+	public MovementAction(String name) {
+		super.Action(name);
+	}
+}

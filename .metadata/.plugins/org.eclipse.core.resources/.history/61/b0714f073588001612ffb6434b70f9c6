@@ -1,0 +1,11 @@
+package unit;
+
+public class FriendlyUnit extends AnyUnit {
+	public static FriendlyUnit[] friendlyUnits = {
+		new FriendlyUnit(),
+		new FriendlyUnit(),
+		new FriendlyUnit(),
+		new FriendlyUnit(),
+	};
+	
+}

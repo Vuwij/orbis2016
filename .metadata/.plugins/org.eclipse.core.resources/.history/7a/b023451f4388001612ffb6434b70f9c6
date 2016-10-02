@@ -1,0 +1,73 @@
+package action;
+
+import java.util.*;
+
+// This class is default static
+public class ActionList extends Dictionary<String, Action> {
+	private static final long serialVersionUID = 1L;
+
+	public ActionList() {
+		this.put("MoveNorth", new MovementAction("MoveNorth"));
+		this.put("MoveSouth", new MovementAction("MoveSouth"));
+		this.put("MoveEast", new MovementAction("MoveEast"));
+		this.put("MoveWest", new MovementAction("MoveWest"));
+		this.put("MoveNorthEast", new MovementAction("MoveNorthEast"));
+		this.put("MoveNorthWest", new MovementAction("MoveNorthWest"));
+		this.put("MoveSouthEast", new MovementAction("MoveSouthEast"));
+		this.put("MoveSouthWest", new MovementAction("MoveSouthWest"));
+		
+		this.put("ShootNorth", new ShootingAction("ShootNorth"));
+		this.put("ShootSouth", new ShootingAction("ShootSouth"));
+		this.put("ShootEast", new ShootingAction("ShootEast"));
+		this.put("ShootWest", new ShootingAction("ShootWest"));
+		this.put("ShootNorthEast", new ShootingAction("ShootNorthEast"));
+		this.put("ShootNorthWest", new ShootingAction("ShootNorthWest"));
+		this.put("ShootSouthEast", new ShootingAction("ShootSouthEast"));
+		this.put("ShootSouthWest", new ShootingAction("ShootSouthWest"));
+		
+		this.put("PickupObject", new OtherAction("PickupObject"));
+	}
+	
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Enumeration<String> keys() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Enumeration<Action> elements() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Action get(Object key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Action put(String key, Action value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Action remove(Object key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

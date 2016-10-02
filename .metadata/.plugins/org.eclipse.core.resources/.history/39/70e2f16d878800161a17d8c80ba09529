@@ -1,0 +1,104 @@
+package action;
+
+import game.AnyUnit;
+import game.CustomWorld;
+
+import com.orbischallenge.ctz.objects.Pickup;
+import com.orbischallenge.ctz.objects.enums.PickupType;
+import com.orbischallenge.ctz.utils.PointUtils;
+
+public class OtherAction extends Action{
+
+	public OtherAction(String name_) {
+		super(name_);
+	}
+
+	@Override
+	public void EvaluateScore() {
+		System.out.println("  Movement: " + this.name);
+		
+		try {
+			score = 0;
+
+			if(this.name == "PickupObject") {
+				score += EvaluatePickupObjectOrStop();
+				System.out.println("    EvaluatePickupObjectOrStop: " + score);
+			}
+			if(this.name == "ActivateShield") {
+				score += EvaluateActivateShield();
+				System.out.println("    EvaluateActivateShield: " + score);	
+			}
+
+			System.out.println("    Total Score: " + score);
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public float EvaluatePickupObjectOrStop() throws Exception {
+		Pickup pickUp = null;
+		for(Pickup p : CustomWorld.world.getPickups()) {
+			if(p.getPosition() == this.currentUnit.unit.getPosition())
+				pickUp = p;
+		}
+		if(pickUp == null) throw new Exception("Attempted to pick up and failed");
+		
+		if(pickUp.getPickupType() == PickupType.SHIELD) {
+			// Pick up if health is not critical
+			int playerHealth = this.currentUnit.unit.getHealth();
+			AnyUnit closestEnemyUnitRange = this.currentUnit.getClosestEnemyInShootingRange();
+			AnyUnit closestEnemyUnit = this.currentUnit.getClosestEnemyInRange();
+			int closestEnemyUnitRangeHealth = closestEnemyUnitRange.unit.getHealth();
+			int closestEnemyUnitHealth = closestEnemyUnit.unit.getHealth();
+			int currentWeaponStrength = this.currentUnit.unit.getCurrentWeapon().getDamage();
+			int currentWeaponRange = this.currentUnit.unit.getCurrentWeapon().getRange();
+			int closestEnemyDistance = PointUtils.chebyshevDistance(this.currentUnit.unit.getPosition(),closestEnemyUnitRange.unit.getPosition());
+			
+			// Returns 0 if I can kill someone immediately
+			if(closestEnemyDistance <= currentWeaponRange) {
+				if(currentWeaponStrength >= closestEnemyUnitHealth) {
+					return 0.0f;
+				}
+			}
+			
+			else return (playerHealth - closestEnemyUnitHealth + 30) * OtherActionPoints.PickupWeapon;
+ 		}
+		// This is way too complicated
+		if (pickUp.getPickupType() == PickupType.SHIELD) {
+			int playerHealth = this.currentUnit.unit.getHealth();
+			AnyUnit closestEnemyUnitRange = this.currentUnit.getClosestEnemyInShootingRange();
+			AnyUnit closestEnemyUnit = this.currentUnit.getClosestEnemyInRange();
+			int closestEnemyUnitRangeHealth = closestEnemyUnitRange.unit.getHealth();
+			int closestEnemyUnitHealth = closestEnemyUnit.unit.getHealth();
+			int currentWeaponStrength = this.currentUnit.unit.getCurrentWeapon().getDamage();
+			int currentWeaponRange = this.currentUnit.unit.getCurrentWeapon().getRange();
+			int closestEnemyDistance = PointUtils.chebyshevDistance(this.currentUnit.unit.getPosition(),closestEnemyUnitRange.unit.getPosition());
+			
+			// Returns 0 if I can kill someone immediately
+			if(closestEnemyDistance <= currentWeaponRange) {
+				if(currentWeaponStrength >= closestEnemyUnitHealth) {
+					return 0.0f;
+				}
+			}
+			
+			return (playerHealth - closestEnemyUnitHealth + 30) * OtherActionPoints.PickupWeapon;
+		}
+		
+		
+		return 0.0f;
+	}
+	
+	public float EvaluateActivateShield() {
+		int playerHealth = this.currentUnit.unit.getHealth();
+		AnyUnit closestEnemyUnitRange = this.currentUnit.getClosestEnemyInShootingRange();
+		AnyUnit closestEnemyUnit = this.currentUnit.getClosestEnemyInRange();
+		int closestEnemyUnitRangeHealth = closestEnemyUnitRange.unit.getHealth();
+		int closestEnemyUnitHealth = closestEnemyUnit.unit.getHealth();
+		int currentWeaponStrength = this.currentUnit.unit.getCurrentWeapon().getDamage();
+		int currentWeaponRange = this.currentUnit.unit.getCurrentWeapon().getRange();
+		int closestEnemyDistance = PointUtils.chebyshevDistance(this.currentUnit.unit.getPosition(),closestEnemyUnitRange.unit.getPosition());
+		
+		return (playerHealth - closestEnemyUnitHealth + 30) * OtherActionPoints.PickupWeapon;
+	}
+}

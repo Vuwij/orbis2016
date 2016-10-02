@@ -1,0 +1,13 @@
+package game;
+
+import action.*;
+
+public class AnyUnit {
+	public ActionList actions = new ActionList();
+	
+	public void CheckIfMovementIsValid() {
+		for(Action action : actions) {
+		}
+	}
+	
+}

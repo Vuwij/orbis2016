@@ -1,0 +1,59 @@
+package game;
+
+import action.ActionList;
+
+import com.orbischallenge.ctz.Constants;
+import com.orbischallenge.ctz.objects.EnemyUnit;
+import com.orbischallenge.ctz.objects.FriendlyUnit;
+import com.orbischallenge.ctz.objects.World;
+import com.orbischallenge.ctz.objects.enums.Direction;
+import com.orbischallenge.ctz.objects.enums.MoveResult;
+import com.orbischallenge.ctz.objects.enums.PickupResult;
+import com.orbischallenge.ctz.objects.enums.ShotResult;
+
+
+@SuppressWarnings("unused")
+public class Enemy extends AnyUnit {
+	public static Enemy[] enemyUnits = {
+		new Enemy(),
+		new Enemy(),
+		new Enemy(),
+		new Enemy()
+	};
+
+	public static void setEnemyUnits(EnemyUnit[] units) {
+		for(int i = 0; i < 4; i++)
+			enemyUnits[i].enemyUnit = units[i];
+	}
+	public static EnemyUnit getUnit(int i) {
+		return enemyUnits[i].enemyUnit;
+	}
+	
+	
+	private EnemyUnit enemyUnit;
+	public void setEnemyUnit(EnemyUnit enemyUnit) {
+		this.enemyUnit = enemyUnit;
+	}
+	
+	@Override
+	public void CheckAllActions() {
+		Point enemyPosition = enemyUnit.getPosition();
+		actions.get("MoveNorth").isValid = (enemyUnit.(Direction.NORTH) == MoveResult.MOVE_VALID);
+		actions.get("MoveSouth").isValid = (enemyUnit.checkMove(Direction.SOUTH) == MoveResult.MOVE_VALID);
+		actions.get("MoveEast").isValid = (enemyUnit.checkMove(Direction.EAST) == MoveResult.MOVE_VALID);
+		actions.get("MoveWest").isValid = (enemyUnit.checkMove(Direction.WEST) == MoveResult.MOVE_VALID);
+		actions.get("MoveNorthEast").isValid = (enemyUnit.checkMove(Direction.NORTH_EAST) == MoveResult.MOVE_VALID);
+		actions.get("MoveNorthWest").isValid = (enemyUnit.checkMove(Direction.NORTH_WEST) == MoveResult.MOVE_VALID);
+		actions.get("MoveSouthEast").isValid = (enemyUnit.checkMove(Direction.SOUTH_EAST) == MoveResult.MOVE_VALID);
+		actions.get("MoveSouthWest").isValid = (enemyUnit.checkMove(Direction.SOUTH_WEST) == MoveResult.MOVE_VALID);
+		
+		for(int i = 0; i < 4; i++) {
+			EnemyUnit enemy = Enemy.getUnit(i);
+			if(enemyUnit.checkShotAgainstEnemy(enemy) == ShotResult.HIT_ENEMY) {
+				setActionForDirections(actions, Direction.fromTo(enemyUnit.getPosition(), enemy.getPosition()));
+			}
+		}
+		
+		actions.get("PickupObject").isValid = (enemyUnit.checkPickupResult() == PickupResult.PICK_UP_VALID);
+	}
+}

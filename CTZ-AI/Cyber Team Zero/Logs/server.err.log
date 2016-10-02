@@ -1,0 +1,5 @@
+Exception in thread "Thread-1" java.lang.NullPointerException
+	at com.orbischallenge.communication.server.CommunicationServer.requestMove(CommunicationServer.java:109)
+	at com.orbischallenge.move.NetworkMoveProvider.getNextMove(NetworkMoveProvider.java:42)
+	at com.orbischallenge.game.engine.MoveProvider.run(MoveProvider.java:78)
+	at java.lang.Thread.run(Thread.java:745)

@@ -1,0 +1,23 @@
+package action;
+
+import java.util.*;
+import com.orbischallenge.game.engine.Point;
+import com.orbischallenge.ctz.objects.enums.*;
+
+public abstract class Action {
+	public String name;
+	public float score = 0.0f;
+	public boolean isValid = false;
+	
+	public AnyUnit currentUnit;
+	public AnyUnit[] enemyPositions;
+	public AnyUnit[] friendlyPositions;
+	
+	public Action(String name_) {
+		name = name_;
+	}
+	
+	public abstract void EvaluateScore();
+}
+
+
